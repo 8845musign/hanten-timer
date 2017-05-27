@@ -38,3 +38,6 @@ jspm_packages
 
 # Next.js
 .next/
+
+# Mac
+.DS_Store
