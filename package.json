@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
   "dependencies": {
     "body-parser": "^1.17.2",
     "co": "^4.6.0",

@@ -1,0 +1,11 @@
+{
+  "server": {
+    "mongo": {
+      "url": "mongodb://localhost",
+      "dbName": "hanten-timer"
+    },
+    "express": {
+      "port": 3000
+    }
+  }
+}
