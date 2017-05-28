@@ -5,7 +5,7 @@ export const START = 'redux/modules/Timer/START'
 const TimerReducer = (state = { isTimerStart: false }, action = {}) => {
   switch (action.type) {
     case START:
-      return Object.assing({},
+      return Object.assign({},
         { isTimerStart: true },
         state
       )
