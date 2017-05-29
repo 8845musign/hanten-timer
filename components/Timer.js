@@ -12,7 +12,11 @@ class Timer extends Component {
   }
 }
 
-const mapStateToProps = ({ state }) => ({ state })
+const mapStateToProps = (state) => {
+  return {
+    isTimerStart: state.isTimerStart
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {

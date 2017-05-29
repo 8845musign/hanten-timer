@@ -6,8 +6,8 @@ const TimerReducer = (state = { isTimerStart: false }, action = {}) => {
   switch (action.type) {
     case START:
       return Object.assign({},
-        { isTimerStart: true },
-        state
+        state,
+        { isTimerStart: true }
       )
     default:
       return state

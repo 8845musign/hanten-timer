@@ -11,7 +11,9 @@ const enhancer = composeEnhancers(
   applyMiddleware()
 )
 
-export const indexStore = (initialState = {}) => {
+export const indexStore = (initialState = {
+  isTimerStart: false
+}) => {
   return createStore(TimerReducer, initialState, enhancer)
 }
 
