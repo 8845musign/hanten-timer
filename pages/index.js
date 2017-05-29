@@ -3,12 +3,12 @@ import withRedux from 'next-redux-wrapper'
 
 import indexStore from './indexStore'
 
-import Timer from '../components/Timer'
+import TimerContainer from '../components/TimerContainer'
 
 class Index extends React.Component {
   render () {
     return (
-      <Timer />
+      <TimerContainer />
     )
   }
 }

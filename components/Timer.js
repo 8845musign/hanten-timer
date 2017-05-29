@@ -1,27 +1,7 @@
-import { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-
-import { startTimer } from '../redux/modules/Timer'
-
-class Timer extends Component {
-  render () {
-    return (
-      <button onClick={this.props.startTimer}>Start Timer</button>
-    )
-  }
+export default ({ startTimer }) => {
+  return (
+    <div>
+      <button onClick={startTimer}>startTimer</button>
+    </div>
+  )
 }
-
-const mapStateToProps = (state) => {
-  return {
-    isTimerStart: state.isTimerStart
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    startTimer: bindActionCreators(startTimer, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Timer)
