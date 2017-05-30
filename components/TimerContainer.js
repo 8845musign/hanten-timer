@@ -6,24 +6,23 @@ import { startTimer } from '../redux/modules/Timer'
 
 import Timer from './Timer'
 
-const REST_TIME = 60
-
 class TimerContainer extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      restTime: REST_TIME
+      pastTime: 0
     }
   }
 
   componentWillReceiveProps () {
     if (this.props.startTimer) {
-      this.restTime = REST_TIME
-
       this.timer = setInterval(() => {
+        // 経過時間計算
+        const pastTime = new Date().getTime() - this.props.startTime
+
         this.setState({
-          restTime: this.state.restTime - 1
+          pastTime: pastTime
         })
       }, 1000)
     }
@@ -31,14 +30,15 @@ class TimerContainer extends Component {
 
   render () {
     return (
-      <Timer restTime={this.state.restTime} startTimer={this.props.startTimer} />
+      <Timer pastTime={this.state.pastTime} startTimer={this.props.startTimer} />
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    isTimerStart: state.isTimerStart
+    isTimerStart: state.isTimerStart,
+    startTime: state.startTime
   }
 }
 
