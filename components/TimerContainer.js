@@ -6,6 +6,9 @@ import { startTimer, stopTimer } from '../redux/modules/Timer'
 
 import Timer from './Timer'
 
+// ミリ秒換算
+const SETTING_TIME = 20 * 1000;
+
 class TimerContainer extends Component {
   constructor (props) {
     super(props)
@@ -35,7 +38,7 @@ class TimerContainer extends Component {
 
   render () {
     return (
-      <Timer pastTime={this.state.pastTime} startTimer={this.props.startTimer} stopTimer={this.props.stopTimer} />
+      <Timer pastTime={this.state.pastTime} startTimer={this.props.startTimer} stopTimer={this.props.stopTimer} settingTime={SETTING_TIME} />
     )
   }
 }
