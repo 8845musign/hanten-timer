@@ -25,7 +25,7 @@ class TimerContainer extends Component {
           pastTime: pastTime
         })
       }, 1000)
-    } else {
+    } else if (this.timer && !next.isTimerStart) {
       clearInterval(this.timer)
       this.setState({
         pastTime: 0
