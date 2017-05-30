@@ -1,11 +1,11 @@
 // Constants
 export const START = 'redux/modules/Timer/START'
+export const STOP = 'redux/modules/Timer/STOP'
 
 // inital
 const initialState = {
   isTimerStart: false,
-  startTime: null,
-  endTime: null
+  startTime: null
 }
 
 // reducer
@@ -16,8 +16,15 @@ const TimerReducer = (state = initialState, action = {}) => {
         state,
         {
           isTimerStart: true,
-          startTime: new Date().getTime(),
-          endTime: null
+          startTime: new Date().getTime()
+        }
+      )
+    case STOP:
+      return Object.assign({},
+      state,
+        {
+          isTimerStart: false,
+          startTime: null
         }
       )
     default:
@@ -28,6 +35,10 @@ const TimerReducer = (state = initialState, action = {}) => {
 // Actions
 export function startTimer () {
   return { type: START }
+}
+
+export function stopTimer () {
+  return { type: STOP }
 }
 
 export default TimerReducer
