@@ -38,7 +38,12 @@ class TimerContainer extends Component {
 
   render () {
     return (
-      <Timer pastTime={this.state.pastTime} startTimer={this.props.startTimer} stopTimer={this.props.stopTimer} settingTime={SETTING_TIME} />
+      <Timer
+        pastTime={this.state.pastTime}
+        startTimer={this.props.startTimer}
+        stopTimer={this.props.stopTimer}
+        settingTime={SETTING_TIME}
+      />
     )
   }
 }
