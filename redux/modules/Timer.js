@@ -43,6 +43,7 @@ const timerReducer = (state = initialState, action = {}) => {
       return state
   }
 }
+export default timerReducer
 
 // Actions
 export function startTimer () {
@@ -67,12 +68,6 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
         dispatch(elapse(new Date().getTime()))
       }
     }, 500)
-  } else if (action.type === ELAPSE) {
-    const state = getState()
-
-    if (state.elapsedTime > state.settingTime) {
-      dispatch(stop())
-    }
   } else if (action.type === STOP) {
     clearInterval(timer)
   }
@@ -80,4 +75,12 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
   next(action)
 }
 
-export default timerReducer
+export const timerElapseMiddleware = ({ dispatch, getState }) => next => action => {
+  const state = getState()
+
+  if (action.type === ELAPSE && state.elapsedTime > state.settingTime) {
+    dispatch(stop())
+  } else {
+    next(action)
+  }
+}

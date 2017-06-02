@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import timerReducer, { timerMiddleware } from '../redux/modules/Timer'
+import timerReducer, { timerMiddleware, timerElapseMiddleware } from '../redux/modules/Timer'
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -7,7 +7,7 @@ const composeEnhancers =
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose
 
 const enhancer = composeEnhancers(
-  applyMiddleware(timerMiddleware)
+  applyMiddleware(timerMiddleware, timerElapseMiddleware)
 )
 
 export const indexStore = (initialState = {
