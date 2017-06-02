@@ -11,7 +11,10 @@ const enhancer = composeEnhancers(
 )
 
 export const indexStore = (initialState = {
-  isTimerStart: false
+  isTimerStart: false,
+  startTime: null,
+  elapsedTime: 0,
+  settingTime: 5 * 1000
 }) => {
   return createStore(timerReducer, initialState, enhancer)
 }

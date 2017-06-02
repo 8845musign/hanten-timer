@@ -53,6 +53,7 @@ export function stopTimer () {
   return { type: STOP }
 }
 
+export const stop = createAction(STOP)
 export const elapse = createAction(ELAPSE, now => now)
 
 let timer = null
@@ -60,8 +61,18 @@ let timer = null
 export const timerMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type === START) {
     timer = setInterval(() => {
-      dispatch(elapse(new Date().getTime()))
+      const state = getState()
+
+      if (state.isTimerStart) {
+        dispatch(elapse(new Date().getTime()))
+      }
     }, 500)
+  } else if (action.type === ELAPSE) {
+    const state = getState()
+
+    if (state.elapsedTime > state.settingTime) {
+      dispatch(stop())
+    }
   } else if (action.type === STOP) {
     clearInterval(timer)
   }
