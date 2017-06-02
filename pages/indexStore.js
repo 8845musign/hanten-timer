@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import TimerReducer from '../redux/modules/Timer'
+import timerReducer, { timerMiddleware } from '../redux/modules/Timer'
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -8,13 +8,13 @@ const composeEnhancers =
 
 
 const enhancer = composeEnhancers(
-  applyMiddleware()
+  applyMiddleware(timerMiddleware)
 )
 
 export const indexStore = (initialState = {
   isTimerStart: false
 }) => {
-  return createStore(TimerReducer, initialState, enhancer)
+  return createStore(timerReducer, initialState, enhancer)
 }
 
 export default indexStore
