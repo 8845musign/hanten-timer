@@ -7,7 +7,7 @@ import { startTimer, stopTimer } from '../redux/modules/Timer'
 import Timer from './Timer'
 
 // ミリ秒換算
-const SETTING_TIME = 20 * 1000;
+const SETTING_TIME = 2 * 1000;
 
 class TimerContainer extends Component {
   constructor (props) {
@@ -22,7 +22,13 @@ class TimerContainer extends Component {
     if (next.isTimerStart) {
       this.timer = setInterval(() => {
         // 経過時間計算
-        const pastTime = new Date().getTime() - next.startTime
+        let pastTime = new Date().getTime() - next.startTime
+
+        if (pastTime > SETTING_TIME) {
+          this.props.stopTimer()
+          pastTime = 0
+          clearInterval(this.timer)
+        }
 
         this.setState({
           pastTime: pastTime
