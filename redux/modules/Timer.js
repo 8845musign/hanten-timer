@@ -46,16 +46,9 @@ const timerReducer = (state = initialState, action = {}) => {
 export default timerReducer
 
 // Actions
-export function startTimer () {
-  return { type: START }
-}
-
-export function stopTimer () {
-  return { type: STOP }
-}
-
-export const stop = createAction(STOP)
-export const elapse = createAction(ELAPSE, now => now)
+export const startTimer = createAction(START)
+export const stopTimer = createAction(STOP)
+export const elapseTimer = createAction(ELAPSE, now => now)
 
 let timer = null
 // middleware
@@ -65,7 +58,7 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
       const state = getState()
 
       if (state.isTimerStart) {
-        dispatch(elapse(new Date().getTime()))
+        dispatch(elapseTimer(new Date().getTime()))
       }
     }, 500)
   } else if (action.type === STOP) {
@@ -79,7 +72,7 @@ export const timerElapseMiddleware = ({ dispatch, getState }) => next => action 
   const state = getState()
 
   if (action.type === ELAPSE && state.elapsedTime > state.settingTime) {
-    dispatch(stop())
+    dispatch(stopTimer())
   } else {
     next(action)
   }
