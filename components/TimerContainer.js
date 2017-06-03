@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { startTimer, stopTimer } from '../redux/modules/Timer'
+import { startTimer, stopTimer, setTime } from '../redux/modules/Timer'
 
 import Timer from './Timer'
 
@@ -22,6 +22,8 @@ class TimerContainer extends Component {
         startTimer={this.props.startTimer}
         stopTimer={this.props.stopTimer}
         settingTime={this.props.settingTime}
+        isTimerStart={this.props.isTimerStart}
+        setTime={this.props.setTime}
       />
     )
   }
@@ -39,7 +41,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     startTimer: bindActionCreators(startTimer, dispatch),
-    stopTimer: bindActionCreators(stopTimer, dispatch)
+    stopTimer: bindActionCreators(stopTimer, dispatch),
+    setTime: bindActionCreators(setTime, dispatch)
   }
 }
 

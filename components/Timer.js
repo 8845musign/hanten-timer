@@ -4,13 +4,20 @@ const convertToTimeRemaing = (settingTime, pastTime) => {
   return settingTime - pastTime
 }
 
-export default ({ startTimer, stopTimer, elapsedTime, settingTime }) => {
+const onChange = (setTime) => {
+  return (e) => {
+    const time = parseInt(e.target.value)
+    setTime(time)
+  }
+}
+
+export default ({ startTimer, stopTimer, elapsedTime, settingTime, setTime, isTimerStart }) => {
   return (
     <div>
       <button onClick={startTimer}>startTimer</button>
       Time Reaming : {TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec
       <button onClick={stopTimer}>stopTimer</button>
-      <input value={settingTime} />
+      <input value={settingTime} onChange={onChange(setTime)} readOnly={isTimerStart === true} />
     </div>
   )
 }
