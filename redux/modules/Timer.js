@@ -4,6 +4,7 @@ import { createAction } from 'redux-actions'
 export const START = 'redux/modules/Timer/START'
 export const STOP = 'redux/modules/Timer/STOP'
 export const ELAPSE = 'redux/modules/Timer/ELAPSE'
+export const SET_TIME = 'redux/modules/Timer/SET_TIME'
 
 // inital
 const initialState = {
@@ -39,6 +40,13 @@ const timerReducer = (state = initialState, action = {}) => {
           elapsedTime: action.payload - state.startTime
         }
       )
+    case SET_TIME:
+      return Object.assign({},
+        state,
+        {
+          settingTime: action.payload
+        }
+      )
     default:
       return state
   }
@@ -49,6 +57,7 @@ export default timerReducer
 export const startTimer = createAction(START)
 export const stopTimer = createAction(STOP)
 export const elapseTimer = createAction(ELAPSE, now => now)
+export const setTime = createAction(SET_TIME, time => time)
 
 let timer = null
 // middleware
