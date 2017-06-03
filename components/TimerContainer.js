@@ -18,7 +18,7 @@ class TimerContainer extends Component {
   render () {
     return (
       <Timer
-        elapsedTime={this.state.elapsedTime}
+        elapsedTime={this.props.elapsedTime}
         startTimer={this.props.startTimer}
         stopTimer={this.props.stopTimer}
         settingTime={this.props.settingTime}
@@ -31,7 +31,8 @@ const mapStateToProps = (state) => {
   return {
     isTimerStart: state.isTimerStart,
     startTime: state.startTime,
-    elapsedTime: state.elapsedTime
+    elapsedTime: state.elapsedTime,
+    settingTime: state.settingTime,
   }
 }
 
