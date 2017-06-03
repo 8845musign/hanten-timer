@@ -9,8 +9,8 @@ export default ({ startTimer, stopTimer, elapsedTime, settingTime }) => {
     <div>
       <button onClick={startTimer}>startTimer</button>
       Time Reaming : {TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec
-
       <button onClick={stopTimer}>stopTimer</button>
+      <input value={settingTime} />
     </div>
   )
 }
