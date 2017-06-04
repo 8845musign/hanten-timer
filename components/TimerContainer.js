@@ -7,14 +7,6 @@ import { startTimer, stopTimer, setTime, pauseTimer } from '../redux/modules/Tim
 import Timer from './Timer'
 
 class TimerContainer extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      pastTime: 0
-    }
-  }
-
   render () {
     return (
       <Timer
