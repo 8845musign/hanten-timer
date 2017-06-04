@@ -1,3 +1,5 @@
+// @flow
+
 import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -7,6 +9,17 @@ import { startTimer, stopTimer, setTime, pauseTimer } from '../redux/modules/Tim
 import Timer from './Timer'
 
 class TimerContainer extends Component {
+  props: {
+    isTimerStart: boolean,
+    elapsedTime: number,
+    settingTime: number,
+    pause: boolean,
+    startTimer: Function,
+    stopTimer: Function,
+    setTime: Function,
+    pauseTimer: Function
+  }
+
   render () {
     return (
       <Timer
@@ -17,6 +30,7 @@ class TimerContainer extends Component {
         pauseTimer={this.props.pauseTimer}
         isTimerStart={this.props.isTimerStart}
         setTime={this.props.setTime}
+        pause={this.props.pause}
       />
     )
   }
@@ -25,7 +39,6 @@ class TimerContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     isTimerStart: state.isTimerStart,
-    startTime: state.startTime,
     elapsedTime: state.elapsedTime,
     settingTime: state.settingTime,
     pause: state.pause

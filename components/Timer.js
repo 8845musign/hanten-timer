@@ -1,17 +1,30 @@
+// @flow
+
 import TimeUtil from '../utils/Time'
 
-const convertToTimeRemaing = (settingTime, pastTime) => {
+const convertToTimeRemaing = (settingTime: number, pastTime: number) => {
   return settingTime - pastTime
 }
 
-const onChange = (setTime) => {
+const onChange = (setTime: Function) => {
   return (e) => {
     const time = parseInt(e.target.value)
     setTime(time)
   }
 }
 
-export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isTimerStart, pause }) => {
+type Props = {
+  startTimer: Function,
+  stopTimer: Function,
+  pauseTimer: Function,
+  setTime: Function,
+  elapsedTime: number,
+  settingTime: number,
+  isTimerStart: boolean,
+  pause: boolean
+}
+
+export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isTimerStart, pause }: Props) => {
   return (
     <div>
       <button onClick={startTimer}>startTimer</button>

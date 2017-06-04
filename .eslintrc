@@ -1,5 +1,13 @@
 {
-  "extends": ["standard", "standard-react"],
+  "parse": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
+  "extends": [
+    "standard",
+    "standard-react",
+    "plugin:flowtype/recommended"
+  ],
   "rules": {
     "react/react-in-jsx-scope": 0
   }
