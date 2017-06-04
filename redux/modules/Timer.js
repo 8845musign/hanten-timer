@@ -3,6 +3,7 @@ import { createAction } from 'redux-actions'
 // Constants
 export const START = 'redux/modules/Timer/START'
 export const STOP = 'redux/modules/Timer/STOP'
+export const PAUSE = 'redux/modules/Timer/PAUSE'
 export const ELAPSE = 'redux/modules/Timer/ELAPSE'
 export const SET_TIME = 'redux/modules/Timer/SET_TIME'
 
@@ -10,6 +11,8 @@ export const SET_TIME = 'redux/modules/Timer/SET_TIME'
 const initialState = {
   isTimerStart: false,
   startTime: null,
+  pause: false,
+  preveElapsedime: null,
   elapsedTime: 0,
   settingTime: 20 * 1000
 }
@@ -22,7 +25,9 @@ const timerReducer = (state = initialState, action = {}) => {
         state,
         {
           isTimerStart: true,
-          startTime: new Date().getTime()
+          pase: false,
+          startTime: new Date().getTime(),
+          preveElapsedime: null
         }
       )
     case STOP:
@@ -30,14 +35,24 @@ const timerReducer = (state = initialState, action = {}) => {
       state,
         {
           isTimerStart: false,
-          startTime: null
+          pause: false,
+          startTime: null,
+          elapsedTime: null
         }
       )
+    case PAUSE:
+      return Object.assign({},
+        state,
+        { pause: true, isTimerStart: false }
+      )
     case ELAPSE:
+      const baseTime = state.preveElapsedime ? state.preveElapsedime : state.startTime
+
       return Object.assign({},
         state,
         {
-          elapsedTime: action.payload - state.startTime
+          elapsedTime: state.elapsedTime + (action.payload - baseTime),
+          preveElapsedime: action.payload
         }
       )
     case SET_TIME:
@@ -56,6 +71,7 @@ export default timerReducer
 // Actions
 export const startTimer = createAction(START)
 export const stopTimer = createAction(STOP)
+export const pauseTimer = createAction(PAUSE)
 export const elapseTimer = createAction(ELAPSE, now => now)
 export const setTime = createAction(SET_TIME, time => time)
 
