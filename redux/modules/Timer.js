@@ -69,7 +69,7 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
       if (state.isTimerStart) {
         dispatch(elapseTimer(new Date().getTime()))
       }
-    }, 500)
+    }, 10)
   } else if (action.type === STOP) {
     clearInterval(timer)
   }
