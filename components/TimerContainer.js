@@ -13,7 +13,7 @@ class TimerContainer extends Component {
     isTimerStart: boolean,
     elapsedTime: number,
     settingTime: number,
-    pause: boolean,
+    isPause: boolean,
     startTimer: Function,
     stopTimer: Function,
     setTime: Function,
@@ -30,7 +30,7 @@ class TimerContainer extends Component {
         pauseTimer={this.props.pauseTimer}
         isTimerStart={this.props.isTimerStart}
         setTime={this.props.setTime}
-        pause={this.props.pause}
+        isPause={this.props.isPause}
       />
     )
   }
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
     isTimerStart: state.isTimerStart,
     elapsedTime: state.elapsedTime,
     settingTime: state.settingTime,
-    pause: state.pause
+    isPause: state.isPause
   }
 }
 
