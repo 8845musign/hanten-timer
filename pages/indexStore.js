@@ -14,7 +14,8 @@ export const indexStore = (initialState = {
   isTimerStart: false,
   startTime: null,
   elapsedTime: 0,
-  settingTime: 60 * 20 * 1000
+  settingTime: 60 * 20 * 1000,
+  taskTitle: ''
 }) => {
   return createStore(timerReducer, initialState, enhancer)
 }

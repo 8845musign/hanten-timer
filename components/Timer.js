@@ -21,12 +21,15 @@ type Props = {
   elapsedTime: number,
   settingTime: number,
   isTimerStart: boolean,
-  isPause: boolean
+  isPause: boolean,
+  taskTitle: String,
+  changeTaskTitle: Function,
 }
 
-export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isTimerStart, isPause }: Props) => {
+export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isTimerStart, isPause, taskTitle, changeTaskTitle }: Props) => {
   return (
     <div>
+      <input type='text' value={taskTitle} onChange={changeTaskTitle} />
       <button onClick={startTimer}>startTimer</button>
       Time Reaming : {TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec
       <button onClick={stopTimer}>stopTimer</button>

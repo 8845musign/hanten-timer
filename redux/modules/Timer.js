@@ -6,6 +6,7 @@ export const STOP = 'redux/modules/Timer/STOP'
 export const PAUSE = 'redux/modules/Timer/PAUSE'
 export const ELAPSE = 'redux/modules/Timer/ELAPSE'
 export const SET_TIME = 'redux/modules/Timer/SET_TIME'
+export const CHANGE_TASK_TITLE = 'redux/modules/Timer/CHANGE_TASK_TITLE'
 
 // inital
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
   pause: false,
   preveElapsedime: null,
   elapsedTime: 0,
-  settingTime: 20 * 1000
+  settingTime: 20 * 1000,
+  taskTitle: ''
 }
 
 // reducer
@@ -62,6 +64,13 @@ const timerReducer = (state = initialState, action = {}) => {
           settingTime: action.payload
         }
       )
+    case CHANGE_TASK_TITLE:
+      return Object.assign({},
+        state,
+        {
+          taskTitle: action.payload
+        }
+      )
     default:
       return state
   }
@@ -74,6 +83,7 @@ export const stopTimer = createAction(STOP)
 export const pauseTimer = createAction(PAUSE)
 export const elapseTimer = createAction(ELAPSE, now => now)
 export const setTime = createAction(SET_TIME, time => time)
+export const changeTaskTitle = createAction(CHANGE_TASK_TITLE, time => time)
 
 let timer = null
 // middleware

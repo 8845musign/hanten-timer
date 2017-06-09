@@ -4,7 +4,7 @@ import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { startTimer, stopTimer, setTime, pauseTimer } from '../redux/modules/Timer'
+import { startTimer, stopTimer, setTime, pauseTimer, changeTaskTitle } from '../redux/modules/Timer'
 
 import Timer from './Timer'
 
@@ -17,7 +17,9 @@ class TimerContainer extends Component {
     startTimer: Function,
     stopTimer: Function,
     setTime: Function,
-    pauseTimer: Function
+    pauseTimer: Function,
+    changeTaskTitle: Function,
+    taskTitle: String
   }
 
   render () {
@@ -31,6 +33,8 @@ class TimerContainer extends Component {
         isTimerStart={this.props.isTimerStart}
         setTime={this.props.setTime}
         isPause={this.props.isPause}
+        changeTaskTitle={this.props.changeTaskTitle}
+        taskTitle={this.props.taskTitle}
       />
     )
   }
@@ -41,7 +45,8 @@ const mapStateToProps = (state) => {
     isTimerStart: state.isTimerStart,
     elapsedTime: state.elapsedTime,
     settingTime: state.settingTime,
-    isPause: state.isPause
+    isPause: state.isPause,
+    taskTitle: state.taskTitle
   }
 }
 
@@ -50,7 +55,8 @@ const mapDispatchToProps = (dispatch) => {
     startTimer: bindActionCreators(startTimer, dispatch),
     stopTimer: bindActionCreators(stopTimer, dispatch),
     setTime: bindActionCreators(setTime, dispatch),
-    pauseTimer: bindActionCreators(pauseTimer, dispatch)
+    pauseTimer: bindActionCreators(pauseTimer, dispatch),
+    changeTaskTitle: bindActionCreators(changeTaskTitle, dispatch)
   }
 }
 
