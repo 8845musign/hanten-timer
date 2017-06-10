@@ -13,6 +13,12 @@ const onChange = (setTime: Function) => {
   }
 }
 
+const onChangeTitle = (changeTaskTitle: Function) => {
+  return (e) => {
+    changeTaskTitle(e.target.value)
+  }
+}
+
 type Props = {
   startTimer: Function,
   stopTimer: Function,
@@ -29,7 +35,7 @@ type Props = {
 export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isTimerStart, isPause, taskTitle, changeTaskTitle }: Props) => {
   return (
     <div>
-      <input type='text' value={taskTitle} onChange={changeTaskTitle} />
+      <input type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
       <button onClick={startTimer}>startTimer</button>
       Time Reaming : {TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec
       <button onClick={stopTimer}>stopTimer</button>

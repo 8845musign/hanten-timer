@@ -83,7 +83,7 @@ export const stopTimer = createAction(STOP)
 export const pauseTimer = createAction(PAUSE)
 export const elapseTimer = createAction(ELAPSE, now => now)
 export const setTime = createAction(SET_TIME, time => time)
-export const changeTaskTitle = createAction(CHANGE_TASK_TITLE, time => time)
+export const changeTaskTitle = createAction(CHANGE_TASK_TITLE, title => title)
 
 let timer = null
 // middleware
