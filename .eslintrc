@@ -9,6 +9,7 @@
     "plugin:flowtype/recommended"
   ],
   "rules": {
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "import/no-unresolved": [2, {"commonjs": true, "amd": true}]
   }
 }
