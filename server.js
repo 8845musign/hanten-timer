@@ -16,6 +16,8 @@ co(function * () {
   yield app.prepare()
   console.log('> App prepared.')
 
+  // TODO enable when api impled
+  /* eslint-disable no-unused-vars */
   const db = yield MongoClient.connect(MONGO_URL)
   console.log(`> Connect to ${MONGO_URL}`)
 
@@ -23,7 +25,7 @@ co(function * () {
 
   server.use(bodyParser.json())
 
-  //server.use('/api', api(db))
+  // server.use('/api', api(db))
 
   server.get('*', (req, res) => {
     return handle(req, res)

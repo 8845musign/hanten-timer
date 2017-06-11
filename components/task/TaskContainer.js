@@ -1,3 +1,5 @@
+// @flow
+
 import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -8,6 +10,12 @@ import { add } from '../../redux/modules/shared/tasks'
 import Add from './Add'
 
 class TaskContainer extends Component {
+  props: {
+    name: String,
+    change: Function,
+    add: Function
+  }
+
   render () {
     return (
       <div>

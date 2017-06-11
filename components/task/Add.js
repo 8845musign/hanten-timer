@@ -1,4 +1,6 @@
-const onSubmit = (add, name) => {
+// @flow
+
+const onSubmit = (add: Function, name: String) => {
   return (e) => {
     e.preventDefault()
 
@@ -6,11 +8,17 @@ const onSubmit = (add, name) => {
   }
 }
 
-const onChange = (change, key) => e => {
+const onChange = (change: Function, key: String) => e => {
   change(key, e.target.value)
 }
 
-export default ({ name, change, add }) => {
+type Props = {
+  name: String,
+  change: Function,
+  add: Function,
+}
+
+export default ({ name, change, add }: Props) => {
   return (
     <section>
       <h2>Add Task</h2>
