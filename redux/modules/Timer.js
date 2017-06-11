@@ -32,7 +32,7 @@ const timerReducer = (state = initialState, action = {}) => {
         {
           isTimerStart: true,
           pase: false,
-          preveElapsedime: null
+          preveElapsedime: action.payload
         }
       )
     case STOP:
@@ -51,13 +51,11 @@ const timerReducer = (state = initialState, action = {}) => {
         { pause: true, isTimerStart: false }
       )
     case ELAPSE:
-      const baseTime = state.preveElapsedime ? state.preveElapsedime : action.payload.startTime
-
       return Object.assign({},
         state,
         {
-          elapsedTime: state.elapsedTime + (action.payload.time - baseTime),
-          preveElapsedime: action.payload.time
+          elapsedTime: state.elapsedTime + calcIncreaseTimeForElapse(state.preveElapsedime, action.payload),
+          preveElapsedime: action.payload
         }
       )
     case SET_TIME:
@@ -91,8 +89,6 @@ export const changeTaskTitle = createAction(CHANGE_TASK_TITLE, title => title)
 let timer = null
 // middleware
 export const timerMiddleware = ({ dispatch, getState }) => next => action => {
-  const state = getState()
-
   if (action.type === START) {
     timer = setInterval(() => {
       const state = getState()
@@ -108,11 +104,6 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
     dispatch(endPomodoro(action.payload))
     // TODO 保存してから新規ポモドーロを作成する
     dispatch(newPomodoro())
-  } else if (action.type === ELAPSE) {
-    action.payload = {
-      time: action.payload,
-      startTime: state.pomodoro.startTime
-    }
   }
 
   next(action)
@@ -126,4 +117,8 @@ export const timerElapseMiddleware = ({ dispatch, getState }) => next => action 
   } else {
     next(action)
   }
+}
+
+const calcIncreaseTimeForElapse = (baseTime, nextTime) => {
+  return nextTime - baseTime
 }
