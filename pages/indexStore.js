@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import timerReducer, { timerMiddleware, timerElapseMiddleware } from '../redux/modules/Timer'
-import pomodoroReducer from '../redux/modules/shared/pomodoro'
+import timerReducer, { timerMiddleware, timerElapseMiddleware } from '../redux/shared/Timer'
+import pomodoroReducer from '../redux/shared/pomodoro'
 
 const composeEnhancers =
   typeof window === 'object' &&

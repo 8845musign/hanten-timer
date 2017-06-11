@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { change } from '../../redux/pages/task/add'
-import { add } from '../../redux/modules/shared/tasks'
+import { add } from '../../redux/shared/tasks'
 
 import Add from './Add'
 

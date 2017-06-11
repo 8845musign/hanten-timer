@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { ADD as ADD_TAKS } from '../../modules/shared/tasks'
+import { ADD as ADD_TAKS } from '../../shared/tasks'
 
 // contants
 export const INIT = 'redux/pages/task/add/INIT'

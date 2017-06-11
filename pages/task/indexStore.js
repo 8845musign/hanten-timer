@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import tasksReducer from '../../redux/modules/shared/tasks'
+import tasksReducer from '../../redux/shared/tasks'
 import addReducer, { addMiddleware } from '../../redux/pages/task/add'
 
 const composeEnhancers =
