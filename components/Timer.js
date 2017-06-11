@@ -38,13 +38,13 @@ type Props = {
   setTime: Function,
   elapsedTime: number,
   settingTime: number,
-  isTimerStart: boolean,
+  isStart: boolean,
   isPause: boolean,
   taskTitle: String,
   changeTaskTitle: Function,
 }
 
-export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isTimerStart, isPause, taskTitle, changeTaskTitle }: Props) => {
+export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isStart, isPause, taskTitle, changeTaskTitle }: Props) => {
   return (
     <div>
       <style global jsx>{`
@@ -63,12 +63,12 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
 
       <fieldset>
         <button onClick={onClickStart(startTimer)}>startTimer</button>
-        <button onClick={pauseTimer} disabled={isPause || !isTimerStart}>Pause</button>
+        <button onClick={pauseTimer} disabled={isPause || !isStart}>Pause</button>
         <button onClick={onClickStop(stopTimer)}>stopTimer</button>
       </fieldset>
 
       <fieldset>
-        <input value={settingTime} onChange={onChange(setTime)} readOnly={isTimerStart === true} />
+        <input value={settingTime} onChange={onChange(setTime)} readOnly={isStart === true} />
       </fieldset>
     </div>
   )

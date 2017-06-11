@@ -15,8 +15,8 @@ export const CHANGE_TASK_TITLE = 'redux/modules/Timer/CHANGE_TASK_TITLE'
 
 // inital
 const initialState = {
-  isTimerStart: false,
-  pause: false,
+  isStart: false,
+  isPause: false,
   preveElapsedime: null,
   elapsedTime: 0,
   settingTime: 20 * 1000,
@@ -30,8 +30,8 @@ const timerReducer = (state = initialState, action = {}) => {
       return Object.assign({},
         state,
         {
-          isTimerStart: true,
-          pase: false,
+          isStart: true,
+          isPause: false,
           preveElapsedime: action.payload
         }
       )
@@ -39,7 +39,7 @@ const timerReducer = (state = initialState, action = {}) => {
       return Object.assign({},
       state,
         {
-          isTimerStart: false,
+          isStart: false,
           pause: false,
           startTime: null,
           elapsedTime: null
@@ -48,7 +48,7 @@ const timerReducer = (state = initialState, action = {}) => {
     case PAUSE:
       return Object.assign({},
         state,
-        { pause: true, isTimerStart: false }
+        { isPause: true, isStart: false }
       )
     case ELAPSE:
       return Object.assign({},
@@ -93,7 +93,7 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
     timer = setInterval(() => {
       const state = getState()
 
-      if (state.timer.isTimerStart) {
+      if (state.timer.isStart) {
         dispatch(elapseTimer(new Date().getTime()))
       }
     }, 10)

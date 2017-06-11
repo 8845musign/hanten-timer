@@ -10,7 +10,7 @@ import Timer from './Timer'
 
 class TimerContainer extends Component {
   props: {
-    isTimerStart: boolean,
+    isStart: boolean,
     elapsedTime: number,
     settingTime: number,
     isPause: boolean,
@@ -30,7 +30,7 @@ class TimerContainer extends Component {
         stopTimer={this.props.stopTimer}
         settingTime={this.props.settingTime}
         pauseTimer={this.props.pauseTimer}
-        isTimerStart={this.props.isTimerStart}
+        isStart={this.props.isStart}
         setTime={this.props.setTime}
         isPause={this.props.isPause}
         changeTaskTitle={this.props.changeTaskTitle}
@@ -42,7 +42,7 @@ class TimerContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isTimerStart: state.timer.isTimerStart,
+    isStart: state.timer.isStart,
     elapsedTime: state.timer.elapsedTime,
     settingTime: state.timer.settingTime,
     isPause: state.timer.isPause,
