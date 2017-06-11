@@ -47,12 +47,29 @@ type Props = {
 export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isTimerStart, isPause, taskTitle, changeTaskTitle }: Props) => {
   return (
     <div>
-      <input type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
-      <button onClick={onClickStart(startTimer)}>startTimer</button>
-      Time Reaming : {TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec
-      <button onClick={onClickStop(stopTimer)}>stopTimer</button>
-      <input value={settingTime} onChange={onChange(setTime)} readOnly={isTimerStart === true} />
-      <button onClick={pauseTimer} disabled={isPause || !isTimerStart}>Pause</button>
+      <style global jsx>{`
+        body {
+          background-color: #FF5252
+        }
+      `}</style>
+      <fieldset>
+        <label>Task Title</label>
+        <input type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
+      </fieldset>
+
+      <div>
+        Time Reaming : {TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec
+      </div>
+
+      <fieldset>
+        <button onClick={onClickStart(startTimer)}>startTimer</button>
+        <button onClick={pauseTimer} disabled={isPause || !isTimerStart}>Pause</button>
+        <button onClick={onClickStop(stopTimer)}>stopTimer</button>
+      </fieldset>
+
+      <fieldset>
+        <input value={settingTime} onChange={onChange(setTime)} readOnly={isTimerStart === true} />
+      </fieldset>
     </div>
   )
 }
