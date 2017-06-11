@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions'
 import uuidV1 from 'uuid/v1'
 
 // contants
-export const ADD = 'redux/modules/tasks/ADD'
+export const ADD = 'redux/shared/tasks/ADD'
 
 // actions
 export const add = createAction(ADD, name => {

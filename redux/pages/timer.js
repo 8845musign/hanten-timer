@@ -6,12 +6,12 @@ import {
 } from '../shared/pomodoro'
 
 // Constants
-export const START = 'redux/modules/Timer/START'
-export const STOP = 'redux/modules/Timer/STOP'
-export const PAUSE = 'redux/modules/Timer/PAUSE'
-export const ELAPSE = 'redux/modules/Timer/ELAPSE'
-export const SET_TIME = 'redux/modules/Timer/SET_TIME'
-export const CHANGE_TASK_TITLE = 'redux/modules/Timer/CHANGE_TASK_TITLE'
+export const START = 'redux/pages/timer/START'
+export const STOP = 'redux/pages/timer/STOP'
+export const PAUSE = 'redux/pages/timer/PAUSE'
+export const ELAPSE = 'redux/pages/timer/ELAPSE'
+export const SET_TIME = 'redux/pages/timer/SET_TIME'
+export const CHANGE_TASK_TITLE = 'redux/pages/timer/CHANGE_TASK_TITLE'
 
 // inital
 const initialState = {

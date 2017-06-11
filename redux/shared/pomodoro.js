@@ -10,11 +10,11 @@ const initialState = {
 }
 
 // constants
-export const NEW = 'redux/modules/pomodoro/NEW'
-export const START = 'redux/modules/pomodoro/START'
-export const END = 'redux/modules/pomodoro/END'
-export const SET_TIME = 'redux/modules/pomodoro/SET_TIME'
-export const ELAPSE = 'redux/modules/pomodoro/ELAPSE'
+export const NEW = 'redux/shared/pomodoro/NEW'
+export const START = 'redux/shared/pomodoro/START'
+export const END = 'redux/shared/pomodoro/END'
+export const SET_TIME = 'redux/shared/pomodoro/SET_TIME'
+export const ELAPSE = 'redux/shared/pomodoro/ELAPSE'
 
 // actions
 export const newPomodoro = createAction(NEW)
