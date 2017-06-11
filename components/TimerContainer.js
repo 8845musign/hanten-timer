@@ -42,11 +42,11 @@ class TimerContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isTimerStart: state.isTimerStart,
-    elapsedTime: state.elapsedTime,
-    settingTime: state.settingTime,
-    isPause: state.isPause,
-    taskTitle: state.taskTitle
+    isTimerStart: state.timer.isTimerStart,
+    elapsedTime: state.timer.elapsedTime,
+    settingTime: state.timer.settingTime,
+    isPause: state.timer.isPause,
+    taskTitle: state.timer.taskTitle
   }
 }
 

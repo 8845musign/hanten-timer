@@ -1,5 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import timerReducer, { timerMiddleware, timerElapseMiddleware } from '../redux/modules/Timer'
+import pomodoroReducer from '../redux/modules/shared/pomodoro'
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -10,14 +11,13 @@ const enhancer = composeEnhancers(
   applyMiddleware(timerMiddleware, timerElapseMiddleware)
 )
 
-export const indexStore = (initialState = {
-  isTimerStart: false,
-  startTime: null,
-  elapsedTime: 0,
-  settingTime: 60 * 20 * 1000,
-  taskTitle: ''
-}) => {
-  return createStore(timerReducer, initialState, enhancer)
+const rootReducer = combineReducers({
+  timer: timerReducer,
+  pomodoro: pomodoroReducer
+})
+
+export const indexStore = () => {
+  return createStore(rootReducer, {}, enhancer)
 }
 
 export default indexStore

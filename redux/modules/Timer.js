@@ -1,4 +1,9 @@
 import { createAction } from 'redux-actions'
+import {
+  start as startPomodoro,
+  end as endPomodoro,
+  newPomodoro
+} from './shared/pomodoro'
 
 // Constants
 export const START = 'redux/modules/Timer/START'
@@ -11,7 +16,6 @@ export const CHANGE_TASK_TITLE = 'redux/modules/Timer/CHANGE_TASK_TITLE'
 // inital
 const initialState = {
   isTimerStart: false,
-  startTime: null,
   pause: false,
   preveElapsedime: null,
   elapsedTime: 0,
@@ -28,7 +32,6 @@ const timerReducer = (state = initialState, action = {}) => {
         {
           isTimerStart: true,
           pase: false,
-          startTime: new Date().getTime(),
           preveElapsedime: null
         }
       )
@@ -48,13 +51,13 @@ const timerReducer = (state = initialState, action = {}) => {
         { pause: true, isTimerStart: false }
       )
     case ELAPSE:
-      const baseTime = state.preveElapsedime ? state.preveElapsedime : state.startTime
+      const baseTime = state.preveElapsedime ? state.preveElapsedime : action.payload.startTime
 
       return Object.assign({},
         state,
         {
-          elapsedTime: state.elapsedTime + (action.payload - baseTime),
-          preveElapsedime: action.payload
+          elapsedTime: state.elapsedTime + (action.payload.time - baseTime),
+          preveElapsedime: action.payload.time
         }
       )
     case SET_TIME:
@@ -78,8 +81,8 @@ const timerReducer = (state = initialState, action = {}) => {
 export default timerReducer
 
 // Actions
-export const startTimer = createAction(START)
-export const stopTimer = createAction(STOP)
+export const startTimer = createAction(START, time => time)
+export const stopTimer = createAction(STOP, time => time)
 export const pauseTimer = createAction(PAUSE)
 export const elapseTimer = createAction(ELAPSE, now => now)
 export const setTime = createAction(SET_TIME, time => time)
@@ -88,16 +91,28 @@ export const changeTaskTitle = createAction(CHANGE_TASK_TITLE, title => title)
 let timer = null
 // middleware
 export const timerMiddleware = ({ dispatch, getState }) => next => action => {
+  const state = getState()
+
   if (action.type === START) {
     timer = setInterval(() => {
       const state = getState()
 
-      if (state.isTimerStart) {
+      if (state.timer.isTimerStart) {
         dispatch(elapseTimer(new Date().getTime()))
       }
     }, 10)
+
+    dispatch(startPomodoro(action.payload))
   } else if (action.type === STOP) {
     clearInterval(timer)
+    dispatch(endPomodoro(action.payload))
+    // TODO 保存してから新規ポモドーロを作成する
+    dispatch(newPomodoro())
+  } else if (action.type === ELAPSE) {
+    action.payload = {
+      time: action.payload,
+      startTime: state.pomodoro.startTime
+    }
   }
 
   next(action)
@@ -106,7 +121,7 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
 export const timerElapseMiddleware = ({ dispatch, getState }) => next => action => {
   const state = getState()
 
-  if (action.type === ELAPSE && state.elapsedTime > state.settingTime) {
+  if (action.type === ELAPSE && state.timer.elapsedTime > state.timer.settingTime) {
     dispatch(stopTimer())
   } else {
     next(action)

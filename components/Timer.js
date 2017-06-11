@@ -19,6 +19,18 @@ const onChangeTitle = (changeTaskTitle: Function) => {
   }
 }
 
+const onClickStart = (startTimer: Function) => {
+  return () => {
+    startTimer(new Date().getTime())
+  }
+}
+
+const onClickStop = (stopTimer: Function) => {
+  return () => {
+    stopTimer(new Date().getTime())
+  }
+}
+
 type Props = {
   startTimer: Function,
   stopTimer: Function,
@@ -36,9 +48,9 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
   return (
     <div>
       <input type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
-      <button onClick={startTimer}>startTimer</button>
+      <button onClick={onClickStart(startTimer)}>startTimer</button>
       Time Reaming : {TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec
-      <button onClick={stopTimer}>stopTimer</button>
+      <button onClick={onClickStop(stopTimer)}>stopTimer</button>
       <input value={settingTime} onChange={onChange(setTime)} readOnly={isTimerStart === true} />
       <button onClick={pauseTimer} disabled={isPause || !isTimerStart}>Pause</button>
     </div>
