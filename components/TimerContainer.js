@@ -4,7 +4,7 @@ import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { startTimer, stopTimer, setTime, pauseTimer, changeTaskTitle } from '../redux/shared/timer'
+import { startTimer, stopTimer, setTime, pauseTimer, changeTaskTitle } from '../redux/pages/timer'
 
 import Timer from './Timer'
 

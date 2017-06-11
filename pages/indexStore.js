@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import timerReducer, { timerMiddleware, timerElapseMiddleware } from '../redux/shared/timer'
+import timerReducer, { timerMiddleware, timerElapseMiddleware } from '../redux/pages/timer'
 import pomodoroReducer from '../redux/shared/pomodoro'
 
 const composeEnhancers =

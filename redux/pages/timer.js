@@ -3,7 +3,7 @@ import {
   start as startPomodoro,
   end as endPomodoro,
   newPomodoro
-} from './pomodoro'
+} from '../shared/pomodoro'
 
 // Constants
 export const START = 'redux/modules/Timer/START'
