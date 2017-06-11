@@ -1,4 +1,6 @@
 {
+  "name": "hanten-timer",
+  "version": "0.1.0",
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
@@ -40,5 +42,6 @@
   },
   "engines" : {
     "node" : ">=7.10.0"
-  }
+  },
+  "license": "MIT"
 }
