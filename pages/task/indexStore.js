@@ -1,5 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import taskReducer from '../../redux/pages/task'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import tasksReducer from '../../redux/modules/shared/tasks'
+import addReducer, { addMiddleware } from '../../redux/pages/task/add'
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -7,11 +8,16 @@ const composeEnhancers =
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose
 
 const enhancer = composeEnhancers(
-  applyMiddleware()
+  applyMiddleware(addMiddleware)
 )
 
+const rootReducer = combineReducers({
+  add: addReducer,
+  tasks: tasksReducer
+})
+
 export const indexStore = () => {
-  return createStore(taskReducer, {}, enhancer)
+  return createStore(rootReducer, {}, enhancer)
 }
 
 export default indexStore
