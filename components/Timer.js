@@ -1,5 +1,7 @@
 // @flow
 
+import Link from 'next/link'
+
 import TimeUtil from '../utils/Time'
 
 const convertToTimeRemaing = (settingTime: number, pastTime: number) => {
@@ -70,6 +72,8 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
       <fieldset>
         <input value={settingTime} onChange={onChange(setTime)} readOnly={isStart === true} />
       </fieldset>
+
+      <Link href='/task'><a>tasks</a></Link>
     </div>
   )
 }
