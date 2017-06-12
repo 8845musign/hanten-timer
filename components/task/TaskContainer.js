@@ -14,7 +14,7 @@ const renderTask = (tasks) => {
 
   Object.keys(tasks).forEach((id) => {
     const task = tasks[id]
-    renderTasks.push(<div key={id}>{task.name}</div>)
+    renderTasks.push(<li key={id}>{task.name}</li>)
   })
 
   return renderTasks
@@ -31,7 +31,9 @@ class TaskContainer extends Component {
   render () {
     return (
       <div>
-        {renderTask(this.props.tasks)}
+        <ul>
+          {renderTask(this.props.tasks)}
+        </ul>
         <Add
           name={this.props.name}
           change={this.props.change}
