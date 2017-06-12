@@ -7,18 +7,8 @@ import { connect } from 'react-redux'
 import { change } from '../../redux/pages/task/add'
 import { add } from '../../redux/shared/tasks'
 
+import Tasks from './Tasks'
 import Add from './Add'
-
-const renderTask = (tasks) => {
-  const renderTasks = []
-
-  Object.keys(tasks).forEach((id) => {
-    const task = tasks[id]
-    renderTasks.push(<li key={id}>{task.name}</li>)
-  })
-
-  return renderTasks
-}
 
 class TaskContainer extends Component {
   props: {
@@ -31,9 +21,8 @@ class TaskContainer extends Component {
   render () {
     return (
       <div>
-        <ul>
-          {renderTask(this.props.tasks)}
-        </ul>
+        <Tasks tasks={this.props.tasks} />
+
         <Add
           name={this.props.name}
           change={this.props.change}
