@@ -26,7 +26,7 @@ export default ({ name, change, add }: Props) => {
       <form onSubmit={onSubmit(add, name)}>
         <fieldset>
           <label>name</label>
-          <input type='text' value={name} onChange={onChange(change, name)} />
+          <input type='text' value={name} onChange={onChange(change, 'name')} />
         </fieldset>
 
         <button type='submit' disabled={name === '' || !name}>add</button>
