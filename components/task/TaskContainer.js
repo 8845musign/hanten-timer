@@ -9,16 +9,29 @@ import { add } from '../../redux/shared/tasks'
 
 import Add from './Add'
 
+const renderTask = (tasks) => {
+  const renderTasks = []
+
+  Object.keys(tasks).forEach((id) => {
+    const task = tasks[id]
+    renderTasks.push(<div key={id}>{task.name}</div>)
+  })
+
+  return renderTasks
+}
+
 class TaskContainer extends Component {
   props: {
     name: String,
     change: Function,
+    tasks: Object,
     add: Function
   }
 
   render () {
     return (
       <div>
+        {renderTask(this.props.tasks)}
         <Add
           name={this.props.name}
           change={this.props.change}
@@ -31,7 +44,8 @@ class TaskContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    name: state.add.name
+    name: state.add.name,
+    tasks: state.tasks
   }
 }
 
