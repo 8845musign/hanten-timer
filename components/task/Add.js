@@ -8,7 +8,7 @@ const onSubmit = (add: Function, name: String) => {
   }
 }
 
-const onChange = (change: Function, key: String) => e => {
+const onChange = (change: Function, key: string) => e => {
   change(key, e.target.value)
 }
 
