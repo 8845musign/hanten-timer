@@ -1,5 +1,7 @@
 // @flow
 
+import Link from 'next/link'
+
 const renderTask = (tasks) => {
   const renderTasks = []
 
@@ -17,8 +19,12 @@ type Props = {
 
 export default ({ tasks }: Props) => {
   return (
-    <ul>
-      {renderTask(tasks)}
-    </ul>
+    <div>
+      <ul>
+        {renderTask(tasks)}
+      </ul>
+
+      <Link href='/'><a>timer</a></Link>
+    </div>
   )
 }
