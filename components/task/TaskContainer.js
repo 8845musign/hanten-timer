@@ -36,8 +36,8 @@ class TaskContainer extends Component {
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    // name: state.add.name,
-    // tasks: state.tasks
+    name: state.add.name,
+    tasks: state.tasks
   }
 }
 

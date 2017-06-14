@@ -1,7 +1,7 @@
 import React from 'react'
 import withRedux from 'next-redux-wrapper'
 
-import indexStore from './indexStore'
+import indexStore from '../indexStore'
 
 import TaskContainer from '../../components/task/TaskContainer'
 
