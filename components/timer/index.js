@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import TimeUtil from '../utils/Time'
+import TimeUtil from '../../utils/Time'
 
 const convertToTimeRemaing = (settingTime: number, pastTime: number) => {
   return settingTime - pastTime

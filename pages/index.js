@@ -3,7 +3,7 @@ import withRedux from 'next-redux-wrapper'
 
 import indexStore from './indexStore'
 
-import TimerContainer from '../components/TimerContainer'
+import TimerContainer from '../components/timer/container'
 
 class Index extends React.Component {
   render () {
