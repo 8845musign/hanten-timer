@@ -54,9 +54,11 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
           background-color: #FF5252
         }
       `}</style>
-      <fieldset>
-        <label>Task Title</label>
-        <input type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
+      <fieldset className='field'>
+        <label className='label'>Task Title</label>
+        <div className='control'>
+          <input className='input' type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
+        </div>
       </fieldset>
 
       <div>

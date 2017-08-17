@@ -13,7 +13,7 @@ class Index extends React.Component {
         <Head>
           <title>My page title</title>
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-          <link rel='stylesheet' type='text/css' href='/static/css/bluma.css' />
+          <link rel='stylesheet' type='text/css' href='/static/css/bulma.css' />
         </Head>
 
         <TimerContainer />
