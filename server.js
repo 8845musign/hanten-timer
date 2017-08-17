@@ -25,6 +25,8 @@ co(function * () {
 
   server.use(bodyParser.json())
 
+  server.use('/static', express.static('static'))
+
   // server.use('/api', api(db))
 
   server.get('*', (req, res) => {
