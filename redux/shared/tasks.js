@@ -1,29 +1,29 @@
 import { createAction } from 'redux-actions'
-import uuidV1 from 'uuid/v1'
+import uuid from 'uuid/v1'
 
 // contants
 export const ADD = 'redux/shared/tasks/ADD'
 
 // actions
-export const add = createAction(ADD, name => {
+const add = createAction(ADD, name => {
   return {
     name,
-    createdAt: new Date().getTime()
+    createdAt: new Date().getTime(),
+    id: uuid()
   }
 })
+
+export const actions = {
+  add
+}
 
 // reducer
 const tasksReducer = (state = {}, action = {}) => {
   switch (action.type) {
     case ADD:
-      const id = uuidV1()
-      return {
-        ...state,
-        [id]: {
-          name: action.payload.name,
-          createAt: action.payload.createAt
-        }
-      }
+      return Object.assign({},
+        { [action.payload.id]: action.payload }
+      )
     default:
       return state
   }

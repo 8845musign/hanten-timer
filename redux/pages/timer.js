@@ -5,6 +5,7 @@ import {
   newPomodoro
 } from '../shared/pomodoro'
 import { actions as pomodorosActions } from '../shared/pomodoros'
+import { actions as tasksActions } from '../shared/tasks'
 
 // Constants
 export const START = 'redux/pages/timer/START'
@@ -87,10 +88,26 @@ export const elapseTimer = createAction(ELAPSE, now => now)
 export const setTime = createAction(SET_TIME, time => time)
 export const changeTaskTitle = createAction(CHANGE_TASK_TITLE, title => title)
 
+// utils
+const isNewTask = (taskName, tasks) => {
+  const names = Object.values(tasks).map((task) => task.name)
+
+  return !names.includes(taskName)
+}
+
 let timer = null
 // middleware
 const timerMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type === START) {
+    const state = getState()
+
+    const { tasks } = state
+    const { taskTitle } = state.timer
+
+    if (isNewTask(taskTitle, tasks)) {
+      dispatch(tasksActions.add(taskTitle))
+    }
+
     timer = setInterval(() => {
       const state = getState()
 
@@ -143,4 +160,3 @@ export const middlewares = [
 const calcIncreaseTimeForElapse = (baseTime, nextTime) => {
   return nextTime - baseTime
 }
-
