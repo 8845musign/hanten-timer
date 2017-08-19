@@ -106,7 +106,10 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
           </div>
         </div>
 
-        <Link href='/task'><a>> tasks</a></Link>
+        <ul>
+          <li><Link href='/task'><a>> tasks</a></Link></li>
+          <li><Link href='/pomodoros'><a>> pomodoros</a></Link></li>
+        </ul>
       </div>
     </section>
   )
