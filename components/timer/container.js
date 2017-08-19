@@ -19,7 +19,8 @@ class TimerContainer extends Component {
     setTime: Function,
     pauseTimer: Function,
     changeTaskTitle: Function,
-    taskTitle: String
+    taskTitle: String,
+    tasks: Array<Object>
   }
 
   render () {
@@ -35,6 +36,7 @@ class TimerContainer extends Component {
         isPause={this.props.isPause}
         changeTaskTitle={this.props.changeTaskTitle}
         taskTitle={this.props.taskTitle}
+        tasks={this.props.tasks}
       />
     )
   }
@@ -46,7 +48,8 @@ const mapStateToProps = (state) => {
     elapsedTime: state.timer.elapsedTime,
     settingTime: state.timer.settingTime,
     isPause: state.timer.isPause,
-    taskTitle: state.timer.taskTitle
+    taskTitle: state.timer.taskTitle,
+    tasks: state.tasks
   }
 }
 

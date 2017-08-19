@@ -1,6 +1,7 @@
 // @flow
 
 import Link from 'next/link'
+import uuid from 'uuid/v1'
 
 import TimeUtil from '../../utils/Time'
 
@@ -44,9 +45,15 @@ type Props = {
   isPause: boolean,
   taskTitle: String,
   changeTaskTitle: Function,
+  tasks: Array<Object>
 }
 
-export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isStart, isPause, taskTitle, changeTaskTitle }: Props) => {
+export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isStart, isPause, taskTitle, changeTaskTitle, tasks }: Props) => {
+  const taskListId = uuid()
+  const renderTaskOption = (task) => {
+    return <option value={task.name} key={task.id} />
+  }
+
   return (
     <section className='section'>
       <div className='container'>
@@ -56,9 +63,11 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
           <div className='tile is-12 notification'>
             <div className='tile is-child'>
               <label htmlFor='task-title' className='title is-4'>Task Title</label>
-
               <div className='control'>
-                <input id='task-title' className='input' type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
+                <input id='task-title' className='input' type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} list={taskListId} />
+                <datalist id={taskListId}>
+                  {Object.values(tasks).map(renderTaskOption)}
+                </datalist>
               </div>
             </div>
           </div>
