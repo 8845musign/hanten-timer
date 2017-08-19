@@ -21,6 +21,7 @@ const tasksReducer = (state = {}, action = {}) => {
   switch (action.type) {
     case ADD:
       return Object.assign({},
+        state,
         { [action.payload.id]: action.payload }
       )
     default:

@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import taskEditReducer, { middlewares as taskPageMiddlewares } from './redux/pages/task'
 import timerReducer, { middlewares as timerMiddlewares } from './redux/pages/timer'
 import tasksReducer from './redux/shared/tasks'
 import pomodorosReducer, {
@@ -13,6 +14,7 @@ const composeEnhancers =
 
 const middlewares = [
   ...timerMiddlewares,
+  ...taskPageMiddlewares,
   ...pomodorosMiddlewares
 ]
 
@@ -24,7 +26,10 @@ const rootReducer = combineReducers({
   tasks: tasksReducer,
   pomodoro: pomodoroReducer,
   pomodoros: pomodorosReducer,
-  timer: timerReducer
+  timer: timerReducer,
+  editing: combineReducers({
+    task: taskEditReducer
+  })
 })
 
 export const indexStore = () => {
