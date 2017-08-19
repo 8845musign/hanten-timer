@@ -5,7 +5,6 @@ type Props = {
 }
 
 export default ({ pomodoro }: Props) => {
-  console.log(pomodoro)
   return (
     <li>
       {pomodoro.startTime}
