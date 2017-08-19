@@ -4,6 +4,12 @@ import List from './List'
 
 export default () => {
   return (
-    <List />
+    <section className='section'>
+      <div className='container'>
+        <h1 className='title is-1'>POMODORS</h1>
+
+        <List />
+      </div>
+    </section>
   )
 }
