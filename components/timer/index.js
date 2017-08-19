@@ -96,11 +96,11 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
                   <input className='input' value={settingTime} onChange={onChange(setTime)} readOnly={isStart === true} />
                 </div>
 
-                <p className='control'>
+                <div className='control'>
                   <div className='button is-static'>
                     minutes
                   </div>
-                </p>
+                </div>
               </div>
             </div>
           </div>
