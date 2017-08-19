@@ -1,9 +1,9 @@
 // @flow
 
+import List from './List'
+
 export default () => {
   return (
-    <div>
-      display list
-    </div>
+    <List />
   )
 }

@@ -3,12 +3,12 @@ import withRedux from 'next-redux-wrapper'
 
 import indexStore from '../../indexStore'
 
-import PomodoroContainer from '../../components/PomodoroContainer'
+import Pomodoros from '../../components/Pomodoros'
 
 class Index extends React.Component {
   render () {
     return (
-      <PomodoroContainer />
+      <Pomodoros />
     )
   }
 }
