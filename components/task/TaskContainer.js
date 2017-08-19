@@ -5,8 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Link from 'next/link'
 
-import { change } from '../../redux/pages/task/add'
-import { add } from '../../redux/shared/tasks'
+import { actions as taskActions } from '../../redux/pages/task'
 
 import Tasks from './Tasks'
 import Add from './Add'
@@ -41,17 +40,16 @@ class TaskContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
-    name: state.add.name,
+    name: state.editing.task.name,
     tasks: state.tasks
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    change: bindActionCreators(change, dispatch),
-    add: bindActionCreators(add, dispatch)
+    change: bindActionCreators(taskActions.change, dispatch),
+    add: bindActionCreators(taskActions.add, dispatch)
   }
 }
 
