@@ -97,7 +97,7 @@ const isNewTask = (taskName, tasks) => {
 
 let timer = null
 // middleware
-const timerMiddleware = ({ dispatch, getState }) => next => action => {
+const startMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type === START) {
     const state = getState()
 
@@ -152,7 +152,7 @@ const timerElapseMiddleware = ({ dispatch, getState }) => next => action => {
 }
 
 export const middlewares = [
-  timerMiddleware,
+  startMiddleware,
   timerElapseMiddleware,
   stopMiddleware
 ]
