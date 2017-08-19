@@ -117,7 +117,18 @@ const timerMiddleware = ({ dispatch, getState }) => next => action => {
     }, 10)
 
     dispatch(startPomodoro(action.payload))
-  } else if (action.type === STOP) {
+  }
+
+  next(action)
+}
+
+const stopMiddleware = ({ dispatch, getState }) => next => action => {
+  if (action.type === STOP) {
+    const state = getState()
+    const recordPomodoro = Object.assign({}, state.pomodoro)
+
+    dispatch(pomodorosActions.record(recordPomodoro))
+
     clearInterval(timer)
     new Promise((resolve) => {
       dispatch(endPomodoro(action.payload))
@@ -138,17 +149,6 @@ const timerElapseMiddleware = ({ dispatch, getState }) => next => action => {
   } else {
     next(action)
   }
-}
-
-const stopMiddleware = ({ dispatch, getState }) => next => action => {
-  if (action.type === STOP) {
-    const state = getState()
-    const endPomodoro = Object.assign({}, state.pomodoro)
-
-    dispatch(pomodorosActions.record(endPomodoro))
-  }
-
-  next(action)
 }
 
 export const middlewares = [
