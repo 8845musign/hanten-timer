@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import uuid from 'uuid/v1'
 import {
   start as startPomodoro,
   end as endPomodoro,
@@ -95,6 +96,12 @@ const isNewTask = (taskName, tasks) => {
   return !names.includes(taskName)
 }
 
+const getTaskId = (taskName, tasks) => {
+  const task = Object.values(tasks).filter((task) => { return task.name === taskName })
+
+  return task[0].id
+}
+
 let timer = null
 // middleware
 const startMiddleware = ({ dispatch, getState }) => next => action => {
@@ -104,8 +111,12 @@ const startMiddleware = ({ dispatch, getState }) => next => action => {
     const { tasks } = state
     const { taskTitle } = state.timer
 
+    let taskId
     if (isNewTask(taskTitle, tasks)) {
-      dispatch(tasksActions.add(taskTitle))
+      taskId = uuid()
+      dispatch(tasksActions.add(taskTitle, taskId))
+    } else {
+      taskId = getTaskId(taskTitle, tasks)
     }
 
     timer = setInterval(() => {
@@ -115,8 +126,7 @@ const startMiddleware = ({ dispatch, getState }) => next => action => {
         dispatch(elapseTimer(new Date().getTime()))
       }
     }, 10)
-
-    dispatch(startPomodoro(action.payload))
+    dispatch(startPomodoro(taskId, action.payload))
   }
 
   next(action)
@@ -124,16 +134,15 @@ const startMiddleware = ({ dispatch, getState }) => next => action => {
 
 const stopMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type === STOP) {
-    const state = getState()
-    const recordPomodoro = Object.assign({}, state.pomodoro)
-
-    dispatch(pomodorosActions.record(recordPomodoro))
-
     clearInterval(timer)
     new Promise((resolve) => {
       dispatch(endPomodoro(action.payload))
       resolve()
     }).then(() => {
+      const state = getState()
+      const recordPomodoro = Object.assign({}, state.pomodoro)
+      dispatch(pomodorosActions.record(recordPomodoro))
+
       dispatch(newPomodoro())
     })
   }

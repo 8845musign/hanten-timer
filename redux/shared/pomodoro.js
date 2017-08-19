@@ -6,7 +6,8 @@ const initialState = {
   endTime: null,
   elapsedTime: 0,
   setttingTime: 20 * 1000,
-  id: ''
+  id: '',
+  taskId: ''
 }
 
 // constants
@@ -19,7 +20,12 @@ export const ELAPSE = 'redux/shared/pomodoro/ELAPSE'
 // actions
 export const newPomodoro = createAction(NEW)
 export const setTime = createAction(SET_TIME)
-export const start = createAction(START, time => time)
+export const start = createAction(START, (taskId, startTime) => {
+  return {
+    taskId,
+    startTime
+  }
+})
 export const elapse = createAction(ELAPSE, time => time)
 export const end = createAction(END, time => time)
 
@@ -36,7 +42,10 @@ const pomodoroReducer = (state = initialState, action = {}) => {
     case START:
       return Object.assign({},
         state,
-        { startTime: action.payload }
+        {
+          startTime: action.payload.startTime,
+          taskId: action.payload.taskId
+        }
       )
     case ELAPSE:
       return Object.assign({},

@@ -1,15 +1,14 @@
 import { createAction } from 'redux-actions'
-import uuid from 'uuid/v1'
 
 // contants
 export const ADD = 'redux/shared/tasks/ADD'
 
 // actions
-const add = createAction(ADD, name => {
+const add = createAction(ADD, (name, id) => {
   return {
     name,
-    createdAt: new Date().getTime(),
-    id: uuid()
+    id,
+    createdAt: new Date().getTime()
   }
 })
 
