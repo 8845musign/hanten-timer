@@ -12,7 +12,7 @@ export const change = createAction(CHANGE, (key, value) => {
 export const init = createAction(INIT)
 
 // middlewares
-export const addMiddleware = ({ dispatch, getState }) => next => action => {
+const addMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type === ADD_TAKS) {
     dispatch(init())
   }
@@ -20,11 +20,15 @@ export const addMiddleware = ({ dispatch, getState }) => next => action => {
   next(action)
 }
 
+export const middlewares = [
+  addMiddleware
+]
+
+// reducer
 const initialState = {
   name: ''
 }
 
-// reducer
 const addReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case INIT:

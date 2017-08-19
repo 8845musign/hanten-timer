@@ -27,9 +27,9 @@ const recordMiddleware = store => next => action => {
   next(action)
 }
 
-export const middlewares = {
+export const middlewares = [
   recordMiddleware
-}
+]
 
 // reudcer
 const pomodorosReducer = (state = initialState, action = {}) => {

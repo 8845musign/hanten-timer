@@ -89,7 +89,7 @@ export const changeTaskTitle = createAction(CHANGE_TASK_TITLE, title => title)
 
 let timer = null
 // middleware
-export const timerMiddleware = ({ dispatch, getState }) => next => action => {
+const timerMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type === START) {
     timer = setInterval(() => {
       const state = getState()
@@ -113,7 +113,7 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
   next(action)
 }
 
-export const timerElapseMiddleware = ({ dispatch, getState }) => next => action => {
+const timerElapseMiddleware = ({ dispatch, getState }) => next => action => {
   const state = getState()
 
   if (action.type === ELAPSE && state.timer.elapsedTime > state.timer.settingTime) {
@@ -123,7 +123,7 @@ export const timerElapseMiddleware = ({ dispatch, getState }) => next => action 
   }
 }
 
-export const stopMiddleware = ({ dispatch, getState }) => next => action => {
+const stopMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type === STOP) {
     const state = getState()
     const endPomodoro = Object.assign({}, state.pomodoro)
@@ -134,6 +134,13 @@ export const stopMiddleware = ({ dispatch, getState }) => next => action => {
   next(action)
 }
 
+export const middlewares = [
+  timerMiddleware,
+  timerElapseMiddleware,
+  stopMiddleware
+]
+
 const calcIncreaseTimeForElapse = (baseTime, nextTime) => {
   return nextTime - baseTime
 }
+
