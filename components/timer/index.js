@@ -50,6 +50,8 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
   return (
     <section className='section'>
       <div className='container'>
+        <h1 className='title is-1'>HANTEN TIMER</h1>
+
         <div className='tile notification'>
           <label className='label'>Task Title</label>
           <div className='control'>

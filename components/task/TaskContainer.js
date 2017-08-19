@@ -3,6 +3,7 @@
 import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Link from 'next/link'
 
 import { change } from '../../redux/pages/task/add'
 import { add } from '../../redux/shared/tasks'
@@ -20,15 +21,21 @@ class TaskContainer extends Component {
 
   render () {
     return (
-      <div>
-        <Tasks tasks={this.props.tasks} />
+      <section className='section'>
+        <div className='container'>
+          <h1 className='title is-1'>TASK LIST</h1>
 
-        <Add
-          name={this.props.name}
-          change={this.props.change}
-          add={this.props.add}
-        />
-      </div>
+          <Add
+            name={this.props.name}
+            change={this.props.change}
+            add={this.props.add}
+          />
+
+          <Tasks tasks={this.props.tasks} />
+
+          <Link href='/'><a>>timer</a></Link>
+        </div>
+      </section>
     )
   }
 }

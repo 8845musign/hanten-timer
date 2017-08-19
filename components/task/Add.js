@@ -20,17 +20,13 @@ type Props = {
 
 export default ({ name, change, add }: Props) => {
   return (
-    <section>
-      <h2>Add Task</h2>
+    <form onSubmit={onSubmit(add, name)}>
+      <div className='field'>
+        <label className='label'>name</label>
+        <input className='input' type='text' value={name} onChange={onChange(change, 'name')} />
+      </div>
 
-      <form onSubmit={onSubmit(add, name)}>
-        <fieldset>
-          <label>name</label>
-          <input type='text' value={name} onChange={onChange(change, 'name')} />
-        </fieldset>
-
-        <button type='submit' disabled={name === '' || !name}>add</button>
-      </form>
-    </section>
+      <button className='button is-primary' type='submit' disabled={name === '' || !name}>add</button>
+    </form>
   )
 }
