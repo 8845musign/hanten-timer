@@ -50,38 +50,60 @@ export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, s
   return (
     <section className='section'>
       <div className='container'>
-        <h1 className='title is-1'>HANTEN TIMER</h1>
+        <h1 className='title'>HANTEN TIMER</h1>
 
-        <div className='tile notification'>
-          <label className='label'>Task Title</label>
-          <div className='control'>
-            <input className='input' type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
-          </div>
-        </div>
+        <div className='tile is-vertical is-ancestor'>
+          <div className='tile is-12 notification'>
+            <div className='tile is-child'>
+              <label htmlFor='task-title' className='title is-4'>Task Title</label>
 
-        <div className='tile notification is-info'>
-          Time Reaming : {TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec
-          <progress className='progress' value={elapsedTime} max={settingTime} >15%</progress>
-        </div>
-
-        <div className='tile notification'>
-          <div className='columns'>
-            <div className='column'>
-              <button className='button is-info is-outlined' onClick={onClickStart(startTimer)}>startTimer</button>
-            </div>
-
-            <div className='column'>
-              <button className='button' onClick={pauseTimer} disabled={isPause || !isStart}>Pause</button>
-            </div>
-
-            <div className='column'>
-              <button className='button is-danger is-outlined' onClick={onClickStop(stopTimer)}>stopTimer</button>
+              <div className='control'>
+                <input id='task-title' className='input' type='text' value={taskTitle} onChange={onChangeTitle(changeTaskTitle)} />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className='tile notification'>
-          <input className='input' value={settingTime} onChange={onChange(setTime)} readOnly={isStart === true} />
+          <div className='tile is-12 notification is-info'>
+            <div className='tile is-child'>
+              <h2 className='title is-4'>Time Reaming</h2>
+              <p className='subtitle'>{TimeUtil.unix2mmss(convertToTimeRemaing(settingTime, elapsedTime))} sec</p>
+              <progress className='progress' value={elapsedTime} max={settingTime} >15%</progress>
+            </div>
+          </div>
+
+          <div className='tile is-12 notification'>
+            <div className='columns'>
+              <div className='column'>
+                <button className='button is-info' onClick={onClickStart(startTimer)}>startTimer</button>
+              </div>
+
+              <div className='column'>
+                <button className='button' onClick={pauseTimer} disabled={isPause || !isStart}>Pause</button>
+              </div>
+
+              <div className='column'>
+                <button className='button is-danger' onClick={onClickStop(stopTimer)}>stopTimer</button>
+              </div>
+            </div>
+          </div>
+
+          <div className='tile is-12 notification'>
+            <div className='tile is-child'>
+              <h2 className='title is-4'>settings</h2>
+
+              <div className='field has-addons'>
+                <div className='control'>
+                  <input className='input' value={settingTime} onChange={onChange(setTime)} readOnly={isStart === true} />
+                </div>
+
+                <p className='control'>
+                  <div className='button is-static'>
+                    minutes
+                  </div>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <Link href='/task'><a>> tasks</a></Link>
