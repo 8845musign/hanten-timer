@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import timerReducer, { timerMiddleware, timerElapseMiddleware, stopMiddleware } from '../redux/pages/timer'
-import tasksReducer from '../redux/shared/tasks'
+import timerReducer, { timerMiddleware, timerElapseMiddleware, stopMiddleware } from './redux/pages/timer'
+import tasksReducer from './redux/shared/tasks'
 import pomodorosReducer, {
   middlewares as pomodorosMiddlewares
-} from '../redux/shared/pomodoros'
-import addReducer, { addMiddleware } from '../redux/pages/task/add'
-import pomodoroReducer from '../redux/shared/pomodoro'
+} from './redux/shared/pomodoros'
+import addReducer, { addMiddleware } from './redux/pages/task/add'
+import pomodoroReducer from './redux/shared/pomodoro'
 
 const composeEnhancers =
   typeof window === 'object' &&
