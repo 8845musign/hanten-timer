@@ -34,6 +34,11 @@ const onClickStop = (stopTimer: Function) => {
   }
 }
 
+type Task = {
+  name: string,
+  id: string
+}
+
 type Props = {
   startTimer: Function,
   stopTimer: Function,
@@ -45,12 +50,12 @@ type Props = {
   isPause: boolean,
   taskTitle: String,
   changeTaskTitle: Function,
-  tasks: Array<Object>
+  tasks: Array<Task>
 }
 
 export default ({ startTimer, stopTimer, pauseTimer, elapsedTime, settingTime, setTime, isStart, isPause, taskTitle, changeTaskTitle, tasks }: Props) => {
   const taskListId = uuid()
-  const renderTaskOption = (task) => {
+  const renderTaskOption = (task: Task) => {
     return <option value={task.name} key={task.id} />
   }
 
