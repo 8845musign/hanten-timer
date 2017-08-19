@@ -4,6 +4,7 @@ import {
   end as endPomodoro,
   newPomodoro
 } from '../shared/pomodoro'
+import { actions as pomodorosActions } from '../shared/pomodoros'
 
 // Constants
 export const START = 'redux/pages/timer/START'
@@ -101,9 +102,12 @@ export const timerMiddleware = ({ dispatch, getState }) => next => action => {
     dispatch(startPomodoro(action.payload))
   } else if (action.type === STOP) {
     clearInterval(timer)
-    dispatch(endPomodoro(action.payload))
-    // TODO 保存してから新規ポモドーロを作成する
-    dispatch(newPomodoro())
+    new Promise((resolve) => {
+      dispatch(endPomodoro(action.payload))
+      resolve()
+    }).then(() => {
+      dispatch(newPomodoro())
+    })
   }
 
   next(action)
@@ -117,6 +121,17 @@ export const timerElapseMiddleware = ({ dispatch, getState }) => next => action 
   } else {
     next(action)
   }
+}
+
+export const stopMiddleware = ({ dispatch, getState }) => next => action => {
+  if (action.type === STOP) {
+    const state = getState()
+    const endPomodoro = Object.assign({}, state.pomodoro)
+
+    dispatch(pomodorosActions.record(endPomodoro))
+  }
+
+  next(action)
 }
 
 const calcIncreaseTimeForElapse = (baseTime, nextTime) => {

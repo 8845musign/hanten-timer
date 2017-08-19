@@ -6,7 +6,7 @@ const initialState = {
   endTime: null,
   elapsedTime: 0,
   setttingTime: 20 * 1000,
-  taskId: ''
+  id: ''
 }
 
 // constants
