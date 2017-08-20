@@ -3,22 +3,28 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 
-import tasksSelector from './selectors/tasks'
 import Item from './Item'
 
 class List extends Component {
   props: {
-    tasks: Array<String>,
+    pomodoros: Array<Object>,
+    tasks: Object
   }
 
-  renderItem (task) {
-    return <Item key={task} task={task} />
+  constructor (props) {
+    super(props)
+
+    this.renderItem = this.renderItem.bind(this)
+  }
+
+  renderItem (pomodoro) {
+    return <Item key={pomodoro.id} pomodoro={pomodoro} tasks={this.props.tasks} />
   }
 
   render () {
     return (
       <ul>
-        {this.props.tasks.map(this.renderItem)}
+        {this.props.pomodoros.map(this.renderItem)}
       </ul>
     )
   }
@@ -26,7 +32,8 @@ class List extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tasks: tasksSelector(state)
+    pomodoros: state.pomodoros,
+    tasks: state.tasks
   }
 }
 
