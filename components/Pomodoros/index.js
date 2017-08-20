@@ -1,5 +1,6 @@
 // @flow
 
+import Link from 'next/link'
 import List from './List'
 
 export default () => {
@@ -9,6 +10,10 @@ export default () => {
         <h1 className='title is-1'>POMODORS</h1>
 
         <List />
+
+        <ul>
+          <li><Link href='/'><a>> timer</a></Link></li>
+        </ul>
       </div>
     </section>
   )
