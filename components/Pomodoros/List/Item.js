@@ -1,13 +1,13 @@
 // @flow
 
 type Props = {
-  pomodoro: Object,
+  task: String
 }
 
-export default ({ pomodoro }: Props) => {
+export default ({ task }: Props) => {
   return (
     <li>
-      {pomodoro.startTime}
+      {task}
     </li>
   )
 }
