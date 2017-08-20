@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Link from 'next/link'
 
 import { actions as taskActions } from '../../redux/pages/task'
+import addValidateSelector from './addValidateSelector'
 
 import Tasks from './Tasks'
 import Add from './Add'
@@ -15,7 +16,8 @@ class TaskContainer extends Component {
     name: String,
     change: Function,
     tasks: Object,
-    add: Function
+    add: Function,
+    validAdd: boolean
   }
 
   render () {
@@ -28,6 +30,7 @@ class TaskContainer extends Component {
             name={this.props.name}
             change={this.props.change}
             add={this.props.add}
+            validAdd={this.props.validAdd}
           />
 
           <Tasks tasks={this.props.tasks} />
@@ -42,7 +45,8 @@ class TaskContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     name: state.editing.task.name,
-    tasks: state.tasks
+    tasks: state.tasks,
+    validAdd: addValidateSelector(state)
   }
 }
 
