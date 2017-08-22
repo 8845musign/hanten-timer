@@ -33,8 +33,10 @@ co(function * () {
     return handle(req, res)
   })
 
-  server.listen(config.server.express.port, (err) => {
+  const port = process.env.PORT || config.server.express.port || 3000
+
+  server.listen(port, (err) => {
     if (err) throw err
-    console.log(`> Ready on http://localhost:${config.server.express.port}`)
+    console.log(`> Ready on http://localhost:${port}`)
   })
 }).catch(error => console.error(error.stack))
