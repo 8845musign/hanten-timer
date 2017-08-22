@@ -139,6 +139,10 @@ const stopMiddleware = ({ dispatch, getState }) => next => action => {
       dispatch(endPomodoro(action.payload))
       resolve()
     }).then(() => {
+      if (Notification.permission === 'granted') {
+        new Notification("stop timer")
+      }
+
       const state = getState()
       const recordPomodoro = Object.assign({}, state.pomodoro)
       dispatch(pomodorosActions.record(recordPomodoro))
