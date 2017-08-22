@@ -3,14 +3,14 @@ const bodyParser = require('body-parser')
 const next = require('next')
 const co = require('co')
 const config = require('config')
-const { MongoClient } = require('mongodb')
+// const { MongoClient } = require('mongodb')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
 // MongoDB
-const MONGO_URL = `${config.server.mongo.url}/${config.server.mongo.dbName}`
+// const MONGO_URL = `${config.server.mongo.url}/${config.server.mongo.dbName}`
 
 co(function * () {
   yield app.prepare()
@@ -18,8 +18,8 @@ co(function * () {
 
   // TODO enable when api impled
   /* eslint-disable no-unused-vars */
-  const db = yield MongoClient.connect(MONGO_URL)
-  console.log(`> Connect to ${MONGO_URL}`)
+  // const db = yield MongoClient.connect(MONGO_URL)
+  // console.log(`> Connect to ${MONGO_URL}`)
 
   const server = express()
 
