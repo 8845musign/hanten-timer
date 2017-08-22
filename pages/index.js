@@ -7,6 +7,12 @@ import indexStore from '../indexStore'
 import TimerContainer from '../components/timer/container'
 
 class Index extends React.Component {
+  componentDidMount () {
+    if (Notification.permission !== 'granted') {
+      Notification.requestPermission()
+    }
+  }
+
   render () {
     return (
       <div>
