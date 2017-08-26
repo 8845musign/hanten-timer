@@ -4,6 +4,7 @@ const next = require('next')
 const co = require('co')
 const config = require('config')
 // const { MongoClient } = require('mongodb')
+const api = require('./api/index.js')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -27,7 +28,8 @@ co(function * () {
 
   server.use('/static', express.static('static'))
 
-  // server.use('/api', api(db))
+  // MONGODBを有効にする場合はapiの第一引数にdbを渡す
+  server.use('/api', api())
 
   server.get('*', (req, res) => {
     return handle(req, res)
